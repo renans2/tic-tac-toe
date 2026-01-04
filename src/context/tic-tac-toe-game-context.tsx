@@ -44,8 +44,10 @@ export default function TicTacToeGameProvider({
   useEffect(() => {
     if (hasWon(nextPlayer, board)) {
       setGameStatus({ status: "over", result: nextPlayer });
+      console.log(nextPlayer, "won");
     } else if (isDraw(board)) {
       setGameStatus({ status: "over", result: "draw" });
+      console.log("draw");
     } else {
       setNextPlayer((prev) => (prev === "X" ? "O" : "X"));
     }
