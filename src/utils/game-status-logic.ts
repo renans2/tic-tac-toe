@@ -6,3 +6,7 @@ export function hasWon(player: Player, board: Board): boolean {
     line.every((index) => board[index.i][index.j] === player)
   );
 }
+
+export function isDraw(board: Board): boolean {
+  return board.every((line) => line.every((space) => space !== null));
+}
