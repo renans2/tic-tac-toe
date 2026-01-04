@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { useTicTacToe } from "../../context/tic-tac-toe-game-context";
-import type { Index } from "../../types/winning-line";
 import { S_Square } from "./styles";
+import type { Symbol } from "../../types/tic-tac-toe-types";
 
 type SquareType = {
-  i: Index;
-  j: Index;
+  onClick: () => void;
+  squareValue: Symbol | null;
 };
 
-export default function Square({ i, j }: SquareType) {
-  const { board, nextPlayer, gameStatus, play } = useTicTacToe();
+export default function Square({ squareValue, onClick }: SquareType) {
+  const { nextPlayer, gameStatus } = useTicTacToe();
   const [mouseIsOver, setMouseIsOver] = useState(false);
 
-  const squareValue = board[i][j];
   const isDisabled = squareValue !== null || gameStatus.status === "over";
   const showNextPlayerOnHover = !isDisabled && mouseIsOver;
   const toDisplay = showNextPlayerOnHover ? nextPlayer : squareValue;
@@ -20,7 +19,7 @@ export default function Square({ i, j }: SquareType) {
   return (
     <S_Square
       disabled={isDisabled}
-      onClick={() => play({ i, j })}
+      onClick={onClick}
       onMouseOver={() => setMouseIsOver(true)}
       onMouseOut={() => setMouseIsOver(false)}
       $showNextPlayerOnHover={showNextPlayerOnHover}
