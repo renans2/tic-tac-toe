@@ -1,14 +1,14 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import type { Player, Board, GameStatus } from "../types/tic-tac-toe-types";
 import { INITIAL_BOARD } from "../constants/initial-board";
-import type { SpaceIndex } from "../types/winning-line";
+import type { SquareIndex } from "../types/winning-line";
 import { hasWon, isDraw } from "../utils/game-status-logic";
 
 type TicTacToeGameContextType = {
   board: Board;
   nextPlayer: Player;
   gameStatus: GameStatus;
-  play: (spaceIndex: SpaceIndex) => void;
+  play: (squareIndex: SquareIndex) => void;
   reset: () => void;
 };
 
@@ -27,7 +27,7 @@ export default function TicTacToeGameProvider({
     status: "not_over",
   });
 
-  const play = ({ i, j }: SpaceIndex) => {
+  const play = ({ i, j }: SquareIndex) => {
     setBoard((prev) => {
       const copy = prev.map((line) => [...line]) as Board;
       copy[i][j] = nextPlayer;
@@ -65,3 +65,12 @@ export default function TicTacToeGameProvider({
     </TicTacToeGameContext>
   );
 }
+
+export const useTicTacToe = () => {
+  const context = useContext(TicTacToeGameContext);
+
+  if (!context)
+    throw new Error("The useTicTacToe hook must be used within its provider");
+
+  return context;
+};
