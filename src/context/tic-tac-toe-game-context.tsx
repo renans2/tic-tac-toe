@@ -9,6 +9,7 @@ type TicTacToeGameContextType = {
   nextPlayer: Player;
   gameStatus: GameStatus;
   play: (spaceIndex: SpaceIndex) => void;
+  reset: () => void;
 };
 
 const TicTacToeGameContext = createContext<
@@ -34,6 +35,12 @@ export default function TicTacToeGameProvider({
     });
   };
 
+  const reset = () => {
+    setBoard(INITIAL_BOARD);
+    setNextPlayer("X");
+    setGameStatus({ status: "not_over" });
+  };
+
   useEffect(() => {
     if (hasWon(nextPlayer, board)) {
       setGameStatus({ status: "over", result: nextPlayer });
@@ -51,6 +58,7 @@ export default function TicTacToeGameProvider({
         nextPlayer,
         gameStatus,
         play,
+        reset,
       }}
     >
       {children}
