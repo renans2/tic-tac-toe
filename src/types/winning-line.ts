@@ -1,5 +1,6 @@
+export type Index = 0 | 1 | 2;
 export type SquareIndex = {
-  i: 0 | 1 | 2;
-  j: 0 | 1 | 2;
+  i: Index;
+  j: Index;
 };
 export type WinningLine = [SquareIndex, SquareIndex, SquareIndex];
