@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const S_Board = styled.div`
-  padding: 2px;
   aspect-ratio: 1 / 1;
   width: 100%;
   max-width: 500px;
@@ -10,5 +9,5 @@ export const S_Board = styled.div`
   grid-template-rows: repeat(3, 1fr);
   gap: 5px;
 
-  background-color: black;
+  background-color: #bababa;
 `;

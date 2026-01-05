@@ -5,13 +5,17 @@ export default function Info() {
   const { gameStatus, nextPlayer, reset } = useTicTacToe();
 
   return (
-    <S_InfoContainer>
+    <S_InfoContainer $nextPlayer={nextPlayer}>
       {gameStatus.status === "not_over" ? (
-        <>Next to play: {nextPlayer}</>
+        <>
+          Next to play: <em>{nextPlayer}</em>
+        </>
       ) : gameStatus.result === "draw" ? (
         <>Draw</>
       ) : (
-        <>{gameStatus.result} won!</>
+        <>
+          <em>{gameStatus.result}</em> won!
+        </>
       )}
 
       {gameStatus.status === "over" && (

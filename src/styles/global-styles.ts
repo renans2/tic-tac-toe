@@ -14,5 +14,6 @@ export const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: black;
   }
 `;

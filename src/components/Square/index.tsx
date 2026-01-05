@@ -23,6 +23,8 @@ export default function Square({ squareValue, onClick }: SquareType) {
       onMouseOver={() => setMouseIsOver(true)}
       onMouseOut={() => setMouseIsOver(false)}
       $showNextPlayerOnHover={showNextPlayerOnHover}
+      $nextPlayer={nextPlayer}
+      $squareValue={squareValue}
     >
       {toDisplay}
     </S_Square>
