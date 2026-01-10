@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useTicTacToe } from "../../context/tic-tac-toe-game-context";
 import { S_Square } from "./styles";
 import type { Symbol } from "../../types/tic-tac-toe-types";
+import X from "../ui/X";
+import O from "../ui/O";
 
 type SquareType = {
   onClick: () => void;
@@ -22,11 +24,9 @@ export default function Square({ squareValue, onClick }: SquareType) {
       onClick={onClick}
       onMouseOver={() => setMouseIsOver(true)}
       onMouseOut={() => setMouseIsOver(false)}
-      $showNextPlayerOnHover={showNextPlayerOnHover}
-      $nextPlayer={nextPlayer}
-      $squareValue={squareValue}
     >
-      {toDisplay}
+      {toDisplay === "X" && <X isHover={showNextPlayerOnHover} />}
+      {toDisplay === "O" && <O isHover={showNextPlayerOnHover} />}
     </S_Square>
   );
 }
