@@ -5,6 +5,7 @@ export const S_Square = styled.button`
   position: relative;
   background-color: black;
   border: none;
+  border-radius: 20px;
   font-size: 3rem;
   cursor: pointer;
 

@@ -7,7 +7,10 @@ export const S_Board = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 5px;
-
+  padding: 3px;
+  gap: 3px;
+  overflow: hidden;
+  position: relative;
   background-color: #bababa;
+  border-radius: 20px;
 `;
