@@ -1,10 +1,11 @@
 import { useTicTacToe } from "../../context/tic-tac-toe-game-context";
 import type { Index } from "../../types/winning-line";
 import Square from "../Square";
+import WinningLineComponent from "../ui/WinningLine";
 import { S_Board } from "./styles";
 
 export default function Board() {
-  const { board, play } = useTicTacToe();
+  const { board, winningLine, play } = useTicTacToe();
 
   return (
     <S_Board>
@@ -17,6 +18,7 @@ export default function Board() {
           />
         ))
       )}
+      {winningLine && <WinningLineComponent winningLine={winningLine} />}
     </S_Board>
   );
 }

@@ -8,7 +8,7 @@ export const S_InfoContainer = styled.div<{ $nextPlayer: Player }>`
   align-items: center;
   gap: 20px;
   color: white;
-  font-size: 2rem;
+  font-size: 2.5rem;
   position: relative;
 
   em {

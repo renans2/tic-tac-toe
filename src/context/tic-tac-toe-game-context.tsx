@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import type { Player, Board, GameStatus } from "../types/tic-tac-toe-types";
 import { INITIAL_BOARD } from "../constants/initial-board";
-import type { SquareIndex } from "../types/winning-line";
-import { hasWon, isDraw } from "../utils/game-status-logic";
+import type { SquareIndex, WinningLine } from "../types/winning-line";
+import { getWinningLineIfWon, isDraw } from "../utils/game-status-logic";
 
 type TicTacToeGameContextType = {
   board: Board;
   nextPlayer: Player;
+  winningLine: WinningLine | undefined;
   gameStatus: GameStatus;
   play: (squareIndex: SquareIndex) => void;
   reset: () => void;
@@ -23,6 +24,7 @@ export default function TicTacToeGameProvider({
 }) {
   const [board, setBoard] = useState<Board>(INITIAL_BOARD);
   const [nextPlayer, setNextPlayer] = useState<Player>("X");
+  const [winningLine, setWinningLine] = useState<WinningLine | undefined>();
   const [gameStatus, setGameStatus] = useState<GameStatus>({
     status: "not_over",
   });
@@ -38,16 +40,18 @@ export default function TicTacToeGameProvider({
   const reset = () => {
     setBoard(INITIAL_BOARD);
     setNextPlayer("X");
+    setWinningLine(undefined);
     setGameStatus({ status: "not_over" });
   };
 
   useEffect(() => {
-    if (hasWon(nextPlayer, board)) {
+    const winningLine = getWinningLineIfWon(nextPlayer, board);
+
+    if (winningLine !== undefined) {
       setGameStatus({ status: "over", result: nextPlayer });
-      console.log(nextPlayer, "won");
+      setWinningLine(winningLine);
     } else if (isDraw(board)) {
       setGameStatus({ status: "over", result: "draw" });
-      console.log("draw");
     } else {
       setNextPlayer((prev) => (prev === "X" ? "O" : "X"));
     }
@@ -58,6 +62,7 @@ export default function TicTacToeGameProvider({
       value={{
         board,
         nextPlayer,
+        winningLine,
         gameStatus,
         play,
         reset,
