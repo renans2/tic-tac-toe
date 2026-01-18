@@ -4,6 +4,7 @@ import { S_Square } from "./styles";
 import type { Symbol } from "../../types/tic-tac-toe-types";
 import X from "../ui/X";
 import O from "../ui/O";
+import { AnimatePresence } from "motion/react";
 
 type SquareType = {
   onClick: () => void;
@@ -25,8 +26,10 @@ export default function Square({ squareValue, onClick }: SquareType) {
       onMouseOver={() => setMouseIsOver(true)}
       onMouseOut={() => setMouseIsOver(false)}
     >
-      {toDisplay === "X" && <X isHover={showNextPlayerOnHover} />}
-      {toDisplay === "O" && <O isHover={showNextPlayerOnHover} />}
+      <AnimatePresence>
+        {toDisplay === "X" && <X isHover={showNextPlayerOnHover} />}
+        {toDisplay === "O" && <O isHover={showNextPlayerOnHover} />}
+      </AnimatePresence>
     </S_Square>
   );
 }

@@ -1,4 +1,13 @@
+import { motion } from "motion/react";
 import styled from "styled-components";
+
+export const S_OWrapper = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const S_O = styled.div<{ $isHover: boolean }>`
   width: 85%;
@@ -7,8 +16,4 @@ export const S_O = styled.div<{ $isHover: boolean }>`
   border-radius: 1000px;
   border: 15px solid blue;
   opacity: ${({ $isHover }) => ($isHover ? "0.5" : "1")};
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 `;

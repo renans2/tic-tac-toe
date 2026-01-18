@@ -1,3 +1,4 @@
+import { AnimatePresence } from "motion/react";
 import { useTicTacToe } from "../../context/tic-tac-toe-game-context";
 import type { Index } from "../../types/winning-line";
 import Square from "../Square";
@@ -16,9 +17,11 @@ export default function Board() {
             onClick={() => play({ i: i as Index, j: j as Index })}
             squareValue={board[i][j]}
           />
-        ))
+        )),
       )}
-      {winningLine && <WinningLineComponent winningLine={winningLine} />}
+      <AnimatePresence>
+        {winningLine && <WinningLineComponent winningLine={winningLine} />}
+      </AnimatePresence>
     </S_Board>
   );
 }

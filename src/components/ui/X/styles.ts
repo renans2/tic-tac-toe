@@ -1,6 +1,15 @@
+import { motion } from "motion/react";
 import styled from "styled-components";
 
-export const S_XLine = styled.div<{ $firstLine: boolean; $isHover: boolean }>`
+export const S_XWrapper = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+`;
+
+export const S_XLine = styled.div<{
+  $firstLine: boolean;
+  $isHover: boolean;
+}>`
   width: 100%;
   height: 15px;
   background-color: red;
