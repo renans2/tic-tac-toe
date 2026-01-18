@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const S_Board = styled.div`
   aspect-ratio: 1 / 1;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
